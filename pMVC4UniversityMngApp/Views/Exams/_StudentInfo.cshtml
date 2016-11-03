@@ -1,0 +1,21 @@
+﻿@model pMVC4UniversityMngApp.Models.Student
+
+<div id="StudentInfo">
+    <fieldset>
+
+        <div class="display-field">            
+            @Html.DisplayNameFor(model => model.StudentName)
+            @Html.DisplayFor(model => model.StudentName)
+        </div>
+
+        <div class="display-field">            
+            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <div class="display-field">
+            @Html.DisplayNameFor(model => model.Department.DeptName)
+            @Html.DisplayFor(model => model.Department.DeptName)
+        </div>
+    </fieldset>
+</div>

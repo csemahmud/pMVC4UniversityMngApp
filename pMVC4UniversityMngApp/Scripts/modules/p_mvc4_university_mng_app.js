@@ -1,0 +1,1 @@
+﻿var pMVC4UniversityMngApp = angular.module('pMVC4UniversityMngApp', []).constant("SELECT_STR","<< SELECT >>")

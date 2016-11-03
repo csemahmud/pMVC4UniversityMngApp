@@ -1,0 +1,42 @@
+﻿@model pMVC4UniversityMngApp.Models.AssignedCourse
+
+@{
+    ViewBag.Title = "Unassign";
+}
+
+<h2 class="fa fa-2x">Unassign</h2>
+
+<h3>Are you sure you want to unassign this course?</h3>
+<fieldset>
+    <legend>AssignedCourse</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Teacher.TeacherName)
+    </div>
+    @if (Model.IsAssigned)
+    {
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Teacher.TeacherName)
+        </div>
+    }
+    else
+    {
+        <div class="display-field">
+            <strong class="error">Not Yet Assigned</strong>
+        </div> 
+    }
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.CourseCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseCode)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Unassign" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

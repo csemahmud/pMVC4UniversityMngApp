@@ -1,0 +1,57 @@
+﻿@model IEnumerable<pMVC4UniversityMngApp.Models.Exam>
+
+    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.CourseCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade.GradeLetter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+            @if (Session["Email"] != null)
+            {
+                <th></th>
+            }
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.CourseCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.CourseName)
+                </td>                
+                @if (item.IsGradeSubmitted)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade.GradeLetter)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <span class="error">Not Published</span>
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                @if (Session["Email"] != null)
+                {
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ExamID })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+    <div><h1 class="error">@ViewBag.NotEnrolled</h1></div>

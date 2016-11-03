@@ -1,0 +1,88 @@
+﻿@model pMVC4UniversityMngApp.Models.Exam
+
+@{
+    ViewBag.Title = "Enroll in a Course";
+}
+
+<h2 class="fa fa-2x">Enroll in a Course :-</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Exam</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StudentID, "Student")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StudentID", " - Select Student - ")
+            @Html.ValidationMessageFor(model => model.StudentID)
+        </div>
+
+        <div class="editor-field">
+            @Html.Partial("~/Views/Exams/_StudentInfo.cshtml")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseID, "Course")
+        </div>
+        <div class="editor-field">            
+            @Html.Partial("~/Views/Exams/_LoadCourseByDeptStudent.cshtml")
+            @Html.ValidationMessageFor(model => model.CourseID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnrollmentDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnrollmentDate)
+            @Html.ValidationMessageFor(model => model.EnrollmentDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Enroll" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("View all Enrolled Students", "Index")
+</div>
+
+@section Scripts {
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        function FillData(id) {
+            $("#CourseID").load('@Url.Action("LoadCourseByDeptStudent")', { studentID: id });
+        }
+
+        $(document).ready(function () {
+            $("#EnrollmentDate").datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#StudentID").change(function () {
+                var id = $("#StudentID :selected").val();
+                $("#StudentInfo").load('@Url.Action("StudentInfo")', { studentID: id });
+                FillData(id);
+            });
+        });
+    </script>
+    
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    alert("@ViewBag.Message");
+                });
+        </script>
+    }
+
+}

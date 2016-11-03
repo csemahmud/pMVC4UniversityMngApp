@@ -1,0 +1,55 @@
+﻿@model pMVC4UniversityMngApp.Models.Exam
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="fa fa-2x">Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Exam</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Student.RegNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.RegNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.CourseCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnrollmentDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnrollmentDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Grade.GradeLetter)
+    </div>
+    @if (Model.IsGradeSubmitted)
+    {
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Grade.GradeLetter)
+        </div>
+    }
+    else
+    { 
+        <div class="display-field">
+            <strong class="error">Result Not Published Yet</strong>
+        </div>
+    }
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

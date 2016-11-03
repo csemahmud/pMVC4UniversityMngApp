@@ -1,0 +1,45 @@
+﻿@model IEnumerable<pMVC4UniversityMngApp.Models.Exam>
+
+    <div id="ResultStudentInfo">
+        @foreach (var item in Model)
+        {
+            <fieldset>
+
+                <div class="display-field">
+                    @Html.LabelFor(model => item.Student.StudentName)
+                    @Html.TextBoxFor(model => item.Student.StudentName, new { disabled = "disabled", @readonly = "readonly"})
+                </div>
+
+                <div class="display-field">
+                    @Html.LabelFor(model => item.Student.Email)
+                    @Html.TextBoxFor(model => item.Student.Email, new { disabled = "disabled", @readonly = "readonly" })
+                </div>
+
+                <div class="display-field">
+                    @Html.LabelFor(model => item.Student.Department.DeptName)
+                    @Html.TextBoxFor(model => item.Student.Department.DeptName, new { disabled = "disabled", @readonly = "readonly" })
+                </div>
+            </fieldset>
+            break;
+        }
+        @if (Model.Count() < 1)
+        {
+            <fieldset>
+
+                <div class="display-field">
+                    <strong>Name :-</strong>
+                    <input type="text" disabled="disabled" readonly="readonly" value="@ViewBag.StudentName" />
+                </div>
+
+                <div class="display-field">
+                    <strong>Email</strong>
+                    <input type="text" disabled="disabled" readonly="readonly" value="@ViewBag.Email" />
+                </div>
+
+                <div class="display-field">
+                    <strong>Department Name :-</strong>
+                    <input type="text" disabled="disabled" readonly="readonly" value="@ViewBag.DeptName" />
+                </div>
+            </fieldset>
+        }
+    </div>

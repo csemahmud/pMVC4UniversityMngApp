@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Welcome";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>
+                    <span class="fa">@ViewBag.Title !!! @ViewBag.Message</span>
+                </h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<div id="sliderContainer">
+    <figure id="sliderFigure">
+        <img id="homeSlide" src="@ViewBag.AbsoluteUrlBase/Images/versity1.gif"
+             data-slideshow="@ViewBag.AbsoluteUrlBase/Images/versity2.gif|@ViewBag.AbsoluteUrlBase/Images/versity3.gif|@ViewBag.AbsoluteUrlBase/Images/versity4.gif|@ViewBag.Host/Images/versity5.jpg" />
+        <figcaption id="slideCaption">University Images</figcaption>
+    </figure>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryhammer")
+<link href="~/Content/jquery_slideshow_plugin/plugin.css" rel="stylesheet" />
+<script src="~/Scripts/jquery_slideshow_plugin/plugin.js"></script>
+<script src="~/Scripts/ums_scripts/demo_slideshow.js"></script>
+
+    <style type="text/css">
+        #sliderContainer {
+            float: left;
+            width: 100%;
+        }
+
+            #sliderContainer #sliderFigure {
+                float: left;
+                width: 100%;
+            }
+
+                #sliderContainer #sliderFigure #homeSlide {
+                    float: left;
+                    width: 100%;
+                }
+
+                #sliderContainer #sliderFigure #slideCaption {
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                }
+    </style>
+}
